@@ -1,17 +1,17 @@
 <script lang="ts">
-  import '@picocss/pico';
+	import '@picocss/pico';
 </script>
 
 <main class="container">
-  <slot />
+	<slot />
 </main>
 
 <style>
-  main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
+	main {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		height: 100vh;
+	}
 </style>

@@ -1,23 +1,34 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { trpc } from '$lib/trpc/client';
+	import type { Display } from '@typings/common.types.js';
+	import { onMount } from 'svelte';
 
 	const client = trpc();
 
 	export let data;
 
+	let roomName = '';
+	let displays: Display[] = [];
+
+	$: displays = [];
 	$: displayName = '';
 	$: isHost = false;
 
+	onMount(() => {
+		displays = data.room.displays;
+		roomName = data.room.name;
+	});
+
 	function handleSubmit() {
-		client.displays.create
+		client.displays.createOrUpdate
 			.mutate({
 				display: {
 					cardValue: 0,
 					isHost,
 					name: displayName
 				},
-				roomId: data.id
+				roomId: data.room.id
 			})
 			.then((data) => {
 				goto(`/room/${data.id}/${displayName}`);
@@ -42,14 +53,14 @@
 
 <!-- TODO: Move to component -->
 <section class="DisplaysInRoom">
-	{#if data.displays.length > 0}
-		<h4>Current displays in {data.name}</h4>
+	{#if displays.length > 0}
+		<h4>Current displays in {roomName}</h4>
 		<ul>
-			{#each data.displays as display}
+			{#each displays as display}
 				<li>{display.name}</li>
 			{/each}
 		</ul>
 	{:else}
-		<h4>There are no displays currently in {data.name}</h4>
+		<h4>There are no displays currently in {roomName}</h4>
 	{/if}
 </section>

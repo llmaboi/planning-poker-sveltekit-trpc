@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Vote } from '../types/vote.type';
+	import type { Vote } from '../types/common.types';
 	import VoteItem from './VoteItem.svelte';
 
 	export let votes: Vote[];

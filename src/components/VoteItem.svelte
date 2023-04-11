@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Vote } from '@myTypes/vote.type';
+	import type { Vote } from '@typings/common.types';
 
 	export let vote: Vote;
 </script>

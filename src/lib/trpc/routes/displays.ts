@@ -1,3 +1,4 @@
+import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
 import { publicProcedure, router } from '../trpc';
 
@@ -18,14 +19,10 @@ export const displaysRouter = router({
 			const maybeDisplay = ctx.getDisplayInRoom(input.roomId, input.display.name);
 
 			if (maybeDisplay !== undefined)
-				throw new Error(
-					// {
-					// throw new TRPCError({
-					// code: 'CONFLICT',
-					// message:
-					'This value already exists'
-					// }
-				);
+				throw new TRPCError({
+					code: 'CONFLICT',
+					message: 'This value already exists'
+				});
 
 			const updatedRoom = ctx.addOrUpdateDisplay(input.roomId, input.display);
 
@@ -112,11 +109,10 @@ export const displaysRouter = router({
 			const room = getRoomById(input.roomId);
 
 			if (room === undefined)
-				// throw new TRPCError({
-				// 	code: 'NOT_FOUND',
-				// 	message: `Room not found with ID: ${input.roomId}`
-				// });
-				throw new Error(`Room not found with ID: ${input.roomId}`);
+				throw new TRPCError({
+					code: 'NOT_FOUND',
+					message: `Room not found with ID: ${input.roomId}`
+				});
 
 			const displays = Array.from(room.displays.values());
 

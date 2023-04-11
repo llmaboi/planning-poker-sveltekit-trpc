@@ -3,7 +3,7 @@ import { vitePluginTrpcWebSocket } from 'trpc-sveltekit/websocket';
 import type { UserConfig } from 'vite';
 
 const config: UserConfig = {
-  plugins: [sveltekit(), vitePluginTrpcWebSocket],
+	plugins: [sveltekit(), vitePluginTrpcWebSocket]
 };
 
 export default config;

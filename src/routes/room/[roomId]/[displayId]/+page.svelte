@@ -1,12 +1,10 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { trpc } from '$lib/trpc/client';
 	import Card from '@components/Card.svelte';
 	import VotingResults from '@components/VotingResults.svelte';
+	import type { Display, Vote } from '@typings/common.types.js';
 	import { onMount } from 'svelte';
-	import { trpc } from '$lib/trpc/client';
-	// TODO: Alias...
-	import type { Vote } from '../../../../types/vote.type';
-	import type { Display } from '$lib/trpc/context';
 
 	const client = trpc();
 
@@ -55,7 +53,8 @@
 			{ roomId: data.room.id },
 			{
 				onData(data) {
-					console.log(data);
+					// eslint-disable-next-line
+					// @ts-ignore
 					typeof data?.displays !== 'undefined' && updateData(data.displays);
 				}
 			}
@@ -63,11 +62,11 @@
 	});
 
 	function resetSelection() {
-		// TODO: Mutation
 		client.displays.update.mutate({
 			roomId: data.room.id,
 			display: {
 				...data.currentDisplay,
+				isHost: data.currentDisplay.isHost ?? false,
 				cardValue: 0
 			}
 		});
@@ -75,7 +74,6 @@
 	}
 
 	function updateDisplayCard(number: number) {
-		// TODO: Mutation
 		client.displays.update.mutate({
 			roomId: data.room.id,
 			display: {

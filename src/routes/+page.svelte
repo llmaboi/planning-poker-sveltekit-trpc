@@ -1,24 +1,11 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { page } from '$app/stores';
 	import { trpc } from '$lib/trpc/client';
-	import type { RoomMapItem } from '$lib/trpc/sessions';
-	import { onMount } from 'svelte';
 	import RoomList from '../components/RoomList.svelte';
 
 	const client = trpc();
 
-	let data: RoomMapItem[] = [];
-
-	// TODO: Move this to a server file?
-	onMount(() => {
-		client.rooms.list.query().then((roomsMap) => {
-			data = roomsMap;
-		});
-		// client.rooms.socket.subscribe((data) => {
-		// 	console.log('subscribed to data: ', data);
-		// });
-	});
+	export let data;
 
 	$: roomName = '';
 
@@ -34,24 +21,20 @@
 			});
 	}
 
-	$: filteredRooms = data.filter((room) =>
+	$: filteredRooms = data.rooms.filter((room) =>
 		room.name.toLowerCase().includes(roomName.toLowerCase())
 	);
 </script>
-
-<h1>WebSocket example</h1>
-<p>
-	Open <a href={`${$page.url}messages`} target="_blank">{$page.url}messages</a> in a new window/tab.
-</p>
 
 <section class="RoomLogin">
 	<h1 class="Heading">Search for or select your room</h1>
 	<form on:submit|preventDefault={handleCreateRoom}>
 		<label class="RoomInput">
-			Create New Room:
+			Create or filter rooms:
 			<input required type="text" bind:value={roomName} />
 		</label>
-		<button class="RoomCreate" disabled={!roomName.length} type="submit">Create room</button>
+		<button class="RoomCreate" disabled={!roomName.length} type="submit">Create or Join Room</button
+		>
 	</form>
 
 	<!-- onSelectRoom={handleRoomSelection} -->

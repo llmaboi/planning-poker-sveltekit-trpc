@@ -1,9 +1,10 @@
 import { TRPCError } from '@trpc/server';
 import { observable } from '@trpc/server/observable';
+import type { Display } from '@typings/common.types';
 import { z } from 'zod';
 import { kebabStyle } from '../kebabStyle';
+import type { RoomMapItem } from '../socketActions';
 import { publicProcedure, router } from '../trpc';
-import type { Display, RoomMapItem } from '../context';
 
 const ZodRoom = z.object({
 	id: z.string().min(1),
@@ -30,8 +31,8 @@ export const roomsRouter = router({
 		.input(z.object({ roomId: z.string() }))
 		.query(({ input, ctx: { getRoomById } }) => {
 			const maybeRoom = getRoomById(input.roomId);
-			// TODO: TRPCIFIY
-			if (maybeRoom === undefined) throw new Error('not found');
+			if (maybeRoom === undefined)
+				throw new TRPCError({ code: 'NOT_FOUND', message: 'room not found' });
 
 			const displays = Array.from(maybeRoom.displays.values());
 			return {
