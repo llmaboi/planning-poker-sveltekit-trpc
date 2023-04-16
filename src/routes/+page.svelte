@@ -38,14 +38,28 @@
 			Create or Join Room
 		</button>
 	</form>
-
-	<!-- onSelectRoom={handleRoomSelection} -->
-	<RoomList rooms={filteredRooms} />
 </section>
 
+<RoomList rooms={filteredRooms} />
+
 <style>
-	form {
-		display: 'flex';
-		flex-direction: 'column';
+	.RoomLogin {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.RoomCreate {
+		margin-top: 1rem;
+	}
+
+	form,
+	.RoomInput {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+	}
+	.RoomInput {
+		font-size: 2rem;
 	}
 </style>
