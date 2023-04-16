@@ -92,12 +92,13 @@
 	}
 </script>
 
-{#if typeof room === 'object'}
-	<DisplayHeading data={{ room: room, isHost: currentDisplay.isHost }} />
-{/if}
-
 <section class="Room">
 	<h1>{data.room.name}</h1>
+
+	{#if typeof room === 'object'}
+		<DisplayHeading data={{ room: room, isHost: currentDisplay.isHost }} />
+	{/if}
+
 	<div class="ResetSelection">
 		<button disabled={currentDisplay?.cardValue === 0} on:click={resetSelection}>
 			Reset Selection

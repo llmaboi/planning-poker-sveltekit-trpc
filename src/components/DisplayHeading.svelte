@@ -15,7 +15,7 @@
 	$: isLoading = false;
 
 	onMount(() => {
-		roomLabel = data.room.name ?? '';
+		roomLabel = data.room.label ?? '';
 	});
 
 	function handleLabelUpdate() {
@@ -95,6 +95,10 @@
 		justify-content: space-evenly;
 		align-items: center;
 		width: 50%;
+	}
+
+	.firstRow {
+		margin: 1rem auto;
 	}
 
 	button {

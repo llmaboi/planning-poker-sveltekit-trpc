@@ -9,10 +9,13 @@
 
 <style>
 	main {
+		background-color: #34495e;
+		border-radius: 1rem;
 		display: flex;
+		justify-content: space-between;
 		flex-direction: column;
-		height: 100vh;
-		width: 100vw;
-		align-items: center;
+		min-height: 40rem;
+		padding: 4rem;
+		margin: 2rem;
 	}
 </style>
