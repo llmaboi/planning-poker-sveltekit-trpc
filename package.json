@@ -14,7 +14,6 @@
     "start": "node ./wsServer"
   },
   "devDependencies": {
-    "@picocss/pico": "^1.5.7",
     "@sveltejs/adapter-node": "^1.2.3",
     "@sveltejs/kit": "^1.14.0",
     "@typescript-eslint/eslint-plugin": "^5.58.0",

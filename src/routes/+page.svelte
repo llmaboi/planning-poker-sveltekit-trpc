@@ -3,9 +3,9 @@
 	import { trpc } from '$lib/trpc/client';
 	import RoomList from '../components/RoomList.svelte';
 
-	const client = trpc();
-
 	export let data;
+
+	const client = trpc();
 
 	$: roomName = '';
 
@@ -33,8 +33,10 @@
 			Create or filter rooms:
 			<input required type="text" bind:value={roomName} />
 		</label>
-		<button class="RoomCreate" disabled={!roomName.length} type="submit">Create or Join Room</button
-		>
+
+		<button class="RoomCreate" disabled={!roomName.length} type="submit">
+			Create or Join Room
+		</button>
 	</form>
 
 	<!-- onSelectRoom={handleRoomSelection} -->

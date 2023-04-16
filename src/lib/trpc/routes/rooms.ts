@@ -1,10 +1,10 @@
 import { TRPCError } from '@trpc/server';
 import { observable } from '@trpc/server/observable';
-import type { Display } from '@typings/common.types';
 import { z } from 'zod';
 import { kebabStyle } from '../kebabStyle';
 import type { RoomMapItem } from '../socketActions';
 import { publicProcedure, router } from '../trpc';
+import type { Display } from '@typings/common.types';
 
 const ZodRoom = z.object({
 	id: z.string().min(1),

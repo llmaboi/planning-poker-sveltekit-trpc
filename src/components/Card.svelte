@@ -24,19 +24,20 @@
 
 <style>
 	.Card {
-		font-size: 3rem;
-		font-weight: bold;
-		border: 0.2rem solid;
-		height: 13rem;
-		width: 9rem;
-		margin: 0.5rem;
 		align-items: center;
+		border: 0.2rem solid;
+		font-size: 2.5rem;
+		font-weight: bold;
+		height: 15rem;
+		margin: 0.5rem;
+		width: 10rem;
 	}
-	/* TODO: Global variables? */
+
 	.disabled {
 		color: #c8374f;
 		cursor: not-allowed;
 	}
+
 	.selected {
 		color: #2ac348;
 	}
