@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
 	import { trpc } from '$lib/trpc/client';
 	import Card from '@components/Card.svelte';
-	import VotingResults from '@components/VotingResults.svelte';
 	import DisplayHeading from '@components/DisplayHeading.svelte';
+	import VotingResults from '@components/VotingResults.svelte';
 	import type { Display, Room, Vote } from '@typings/common.types.js';
 	import { onMount } from 'svelte';
 
@@ -49,17 +48,21 @@
 			{
 				onData(data) {
 					const newroom = {
+						// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 						// @ts-ignore
 						id: data.id,
+						// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 						// @ts-ignore
 						name: data.name,
+						// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 						// @ts-ignore
 						label: data.label,
+						// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 						// @ts-ignore
 						showVotes: data.showVotes
 					};
 					room = newroom;
-					// eslint-disable-next-line
+					// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 					// @ts-ignore
 					typeof data?.displays !== 'undefined' && updateData(data.displays);
 				}
