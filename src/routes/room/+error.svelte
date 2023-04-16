@@ -4,4 +4,8 @@
 	let message = $page?.error?.message ?? 'Something went wrong';
 </script>
 
-<h3>{$page.status}: {message}</h3>
+<div>
+	Something went wrong.
+
+	<div class="error">{$page.error?.message} | {$page.status}: {message}</div>
+</div>

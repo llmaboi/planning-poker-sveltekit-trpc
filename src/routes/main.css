@@ -127,6 +127,11 @@ li {
 	margin: 0.5rem auto;
 }
 
+.error {
+	color: coral;
+	margin: 0.5rem;
+}
+
 @media (prefers-color-scheme: light) {
 	:root {
 		color: #22313f;

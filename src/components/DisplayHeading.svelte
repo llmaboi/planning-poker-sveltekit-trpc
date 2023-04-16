@@ -62,8 +62,6 @@
 		<div class="secondRow">
 			<button disabled={isLoading} on:click={handleCardReset}>Reset cards</button>
 
-			{data.room.showVotes}
-
 			{#if data.room.showVotes}
 				<button disabled={isLoading} on:click={handleShowVotes}>Hide Votes</button>
 			{:else}
